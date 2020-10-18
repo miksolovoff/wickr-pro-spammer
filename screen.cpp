@@ -1,34 +1,61 @@
-#pragma once
+#include "screen.h"
 
-#include <Windows.h>
-#include <opencv2/highgui/highgui.hpp>
+void Screen::setHwnd(const HWND& newHwnd) {
+	hwnd = newHwnd;
+}
 
-using namespace cv;
+Screen::Screen() {}
 
-class Screen {
-public:
-	Screen(const HWND& newHwnd);
-	Screen();
-	~Screen();
+Screen::Screen(const HWND& newHwnd) {
+	// Параметры экрана
+	setHwnd(newHwnd);
+	hWDC = GetWindowDC(hwnd);
+	width = GetSystemMetrics(SM_CXSCREEN);
+	height = GetSystemMetrics(SM_CYSCREEN);
 
-	void setHwnd(const HWND& newHwnd);
+	// Совместимый контекст в памяти
+	hScreen = CreateCompatibleDC(hWDC);
+	hBM = CreateCompatibleBitmap(hWDC, width, height); 
+	hBM_Temp = SelectObject(hScreen, hBM);
 
-	cv::Mat& get();
+	// Описание рабочего массива бит совместимого контекста в памяти
+	BMI.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	BMI.bmiHeader.biWidth = width;
+	BMI.bmiHeader.biHeight = -height;
+	BMI.bmiHeader.biPlanes = 1;
+	BMI.bmiHeader.biBitCount = 24;
+	BMI.bmiHeader.biCompression = BI_RGB;
 
-private:
-	HWND hwnd; // Дескриптор окна
-	HDC hWDC; // Контекст экрана
-	HDC hScreen; // Совместимый с экраном контекст в памяти
-	HBITMAP hBM; // Рабочий массив бит совместимого контекста в памяти
-	BITMAPINFO BMI; // Описание рабочего массива бит совместимого контекста в памяти
+	// Массив данных скриншота
+	const int colorSize = 3; // Размер пикселя
+	const int alignment = 4; // Выравнивание строки		 
+	int step = (int)ceil(width * colorSize / (double)alignment) * alignment; // Шаг строки
+	data = new char[step * height]; // - delete[] data;
 
-	int width; // Ширина экрана в пикселях
-	int height; // Высота экрана в пикселях
+	// Скриншот
+	screen = new Mat(height, width, CV_8UC3, data, step);
+}
 
-	char* data; // Массив данных скриншота
-	cv::Mat* screen; // Скриншот
+Screen::~Screen() {
+	SelectObject(hScreen, hBM_Temp);
+	DeleteObject(hBM);
+	DeleteDC(hScreen);
+	delete screen; screen = NULL;
+	delete[] data; data = NULL;
+}
 
-	HGDIOBJ hBM_Temp; // Массив бит совместимого контекста в памяти созданный по умолчанию	
-};
+Mat& Screen::get() {
+	BitBlt(hScreen, 0, 0, width, height, hWDC, 0, 0, SRCCOPY);
+	GetDIBits(hScreen, hBM, 0, height, data, &BMI, DIB_RGB_COLORS);
+	return *screen;
+}
 
-bool Equal(const Mat& lhs, const Mat& rhs);
+bool Equal(const Mat& lhs, const Mat& rhs) {
+	if ((lhs.rows != rhs.rows) || (lhs.cols != rhs.cols)) {
+		return false;
+	}
+
+	Scalar s = sum(lhs - rhs);
+
+	return (s[0] == 0) && (s[1] == 0) && (s[2] == 0);
+}
