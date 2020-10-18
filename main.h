@@ -201,7 +201,7 @@ namespace WickrSpammer {
 
 				try {
 					names = StrsFromFile(namesFile.c_str()); // Вектор с никами
-				    messages = StrsFromFile(messageFile.c_str()); // Вектор с сообщениями
+				        messages = StrsFromFile(messageFile.c_str()); // Вектор с сообщениями
 				}
 				catch (std::exception e) {
 					System::String^ exceptionMsg; // Сообщение с исключением
