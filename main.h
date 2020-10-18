@@ -1,9 +1,9 @@
 #pragma once
 
 #include "spammer.h"
+
 #include <iostream>
 #include <algorithm>
-
 
 bool StopSpam;
 size_t NewProgressMax = 0;
@@ -27,7 +27,7 @@ namespace WickrSpammer {
 	using namespace System::Threading;
 
 	/// <summary>
-	/// Сводка для main
+	/// РЎРІРѕРґРєР° РґР»СЏ main
 	/// </summary>
 	public ref class main : public System::Windows::Forms::Form
 	{
@@ -36,13 +36,13 @@ namespace WickrSpammer {
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~main()
 		{
@@ -69,14 +69,14 @@ namespace WickrSpammer {
 
 	private:
 		/// <summary>
-		/// Обязательная переменная конструктора.
+		/// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -97,7 +97,7 @@ namespace WickrSpammer {
 			this->spamRunClick->Name = L"spamRunClick";
 			this->spamRunClick->Size = System::Drawing::Size(150, 57);
 			this->spamRunClick->TabIndex = 0;
-			this->spamRunClick->Text = L"Запуск рассылки";
+			this->spamRunClick->Text = L"Р—Р°РїСѓСЃРє СЂР°СЃСЃС‹Р»РєРё";
 			this->spamRunClick->UseVisualStyleBackColor = true;
 			this->spamRunClick->Click += gcnew System::EventHandler(this, &main::SpamRunClick);
 			// 
@@ -107,7 +107,7 @@ namespace WickrSpammer {
 			this->spamStopClick->Name = L"spamStopClick";
 			this->spamStopClick->Size = System::Drawing::Size(150, 57);
 			this->spamStopClick->TabIndex = 1;
-			this->spamStopClick->Text = L"Остановить рассылку";
+			this->spamStopClick->Text = L"РћСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°СЃСЃС‹Р»РєСѓ";
 			this->spamStopClick->UseVisualStyleBackColor = true;
 			this->spamStopClick->Click += gcnew System::EventHandler(this, &main::SpamStopClick);
 			// 
@@ -128,7 +128,7 @@ namespace WickrSpammer {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(138, 16);
 			this->label1->TabIndex = 3;
-			this->label1->Text = L"Прогресс рассылки:";
+			this->label1->Text = L"РџСЂРѕРіСЂРµСЃСЃ СЂР°СЃСЃС‹Р»РєРё:";
 			this->label1->Click += gcnew System::EventHandler(this, &main::label1_Click);
 			// 
 			// openFileDialog1
@@ -142,7 +142,7 @@ namespace WickrSpammer {
 			this->chooseFileNames->Name = L"chooseFileNames";
 			this->chooseFileNames->Size = System::Drawing::Size(95, 57);
 			this->chooseFileNames->TabIndex = 4;
-			this->chooseFileNames->Text = L"Выбрать файл с никами";
+			this->chooseFileNames->Text = L"Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р» СЃ РЅРёРєР°РјРё";
 			this->chooseFileNames->UseVisualStyleBackColor = true;
 			this->chooseFileNames->Click += gcnew System::EventHandler(this, &main::chooseFileNames_Click);
 			// 
@@ -152,7 +152,7 @@ namespace WickrSpammer {
 			this->chooseFileMessage->Name = L"chooseFileMessage";
 			this->chooseFileMessage->Size = System::Drawing::Size(95, 57);
 			this->chooseFileMessage->TabIndex = 5;
-			this->chooseFileMessage->Text = L"Выбрать файл с сообщением";
+			this->chooseFileMessage->Text = L"Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р» СЃ СЃРѕРѕР±С‰РµРЅРёРµРј";
 			this->chooseFileMessage->UseVisualStyleBackColor = true;
 			this->chooseFileMessage->Click += gcnew System::EventHandler(this, &main::chooseFileMessage_Click);
 			// 
@@ -162,7 +162,7 @@ namespace WickrSpammer {
 			this->chooseFileLogs->Name = L"chooseFileLogs";
 			this->chooseFileLogs->Size = System::Drawing::Size(95, 57);
 			this->chooseFileLogs->TabIndex = 6;
-			this->chooseFileLogs->Text = L"Выбрать файл для записи логов";
+			this->chooseFileLogs->Text = L"Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р» РґР»СЏ Р·Р°РїРёСЃРё Р»РѕРіРѕРІ";
 			this->chooseFileLogs->UseVisualStyleBackColor = true;
 			this->chooseFileLogs->Click += gcnew System::EventHandler(this, &main::chooseFileLogs_Click);
 			// 
@@ -192,75 +192,75 @@ namespace WickrSpammer {
 #pragma endregion
 	public:	void Spam() {
 			try {
-				StopSpam = false; // рассылка активна
+				StopSpam = false; // СЂР°СЃСЃС‹Р»РєР° Р°РєС‚РёРІРЅР°
 
-				Spammer sp(FindWindow(L"Qt5QWindowOwnDCIcon", L"Wickr Pro")); // объект класса Spammer, непосредственная рассылка
+				Spammer sp(FindWindow(L"Qt5QWindowOwnDCIcon", L"Wickr Pro")); // РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° Spammer, РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅР°СЏ СЂР°СЃСЃС‹Р»РєР°
 
 				std::vector<std::string> names = {};
 				std::vector<std::string> messages = {};
 
 				try {
 					names = StrsFromFile(namesFile.c_str());
-				    messages = StrsFromFile(messageFile.c_str()); // вектор с сообщениями
+				    messages = StrsFromFile(messageFile.c_str()); // РІРµРєС‚РѕСЂ СЃ СЃРѕРѕР±С‰РµРЅРёСЏРјРё
 				}
 				catch (std::exception e) {
-					System::String^ exceptionMsg; // сообщение с исключением
-					exceptionMsg = gcnew System::String((std::string("Any problems in file: ") + e.what()).c_str()); // преобразование 
-					MessageBox::Show(exceptionMsg, "Error!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk); // вывод окошка с сообщением об ошибке
+					System::String^ exceptionMsg; // СЃРѕРѕР±С‰РµРЅРёРµ СЃ РёСЃРєР»СЋС‡РµРЅРёРµРј
+					exceptionMsg = gcnew System::String((std::string("Any problems in file: ") + e.what()).c_str()); // РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ 
+					MessageBox::Show(exceptionMsg, "Error!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk); // РІС‹РІРѕРґ РѕРєРѕС€РєР° СЃ СЃРѕРѕР±С‰РµРЅРёРµРј РѕР± РѕС€РёР±РєРµ
 					StopSpam = true;
 				}
 
-				NewProgressMax = names.size(); // верхнаяя граница ProgressBar
+				NewProgressMax = names.size(); // РІРµСЂС…РЅР°СЏСЏ РіСЂР°РЅРёС†Р° ProgressBar
 
-				this->Invoke(gcnew Action(this, &main::UpdateProgressMax)); // для запуска в другом потоке
+				this->Invoke(gcnew Action(this, &main::UpdateProgressMax)); // РґР»СЏ Р·Р°РїСѓСЃРєР° РІ РґСЂСѓРіРѕРј РїРѕС‚РѕРєРµ
 
-				for (const auto& name : names) { // итерирование по каждому нику
+				for (const auto& name : names) { // РёС‚РµСЂРёСЂРѕРІР°РЅРёРµ РїРѕ РєР°Р¶РґРѕРјСѓ РЅРёРєСѓ
 					if (StopSpam) {
 						break;
 					}
 
-					sp.FindUserByStr(name); // поиск пользователя
+					sp.FindUserByStr(name); // РїРѕРёСЃРє РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 					if (StopSpam) {
 						break;
 					}
 
-					if (sp.IsUserFinded(name)) { // пользователь найден
+					if (sp.IsUserFinded(name)) { // РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅР°Р№РґРµРЅ
 						if (StopSpam) {
 							break;
 						}
 
-						sp.ChooseUser(); // выбрать пользователя
+						sp.ChooseUser(); // РІС‹Р±СЂР°С‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 						if (StopSpam) {
 							break;
 						}
 
-						sp.ConfirmUser(name); // подтвердить выбор пользователя
+						sp.ConfirmUser(name); // РїРѕРґС‚РІРµСЂРґРёС‚СЊ РІС‹Р±РѕСЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 						if (StopSpam) {
 							break;
 						}
 
-						for (const auto& msg : messages) { // итерирование по каждому сообщению
+						for (const auto& msg : messages) { // РёС‚РµСЂРёСЂРѕРІР°РЅРёРµ РїРѕ РєР°Р¶РґРѕРјСѓ СЃРѕРѕР±С‰РµРЅРёСЋ
 							if (StopSpam) {
 								break;
 							}
-							sp.SendMessageToUser(msg); // отправка сообщения
+							sp.SendMessageToUser(msg); // РѕС‚РїСЂР°РІРєР° СЃРѕРѕР±С‰РµРЅРёСЏ
 							Sleep(10);
 						}
 
-						LogToFile(logsFile.c_str(), name, "message has been sent"); // запись лога в файл
+						LogToFile(logsFile.c_str(), name, "message has been sent"); // Р·Р°РїРёСЃСЊ Р»РѕРіР° РІ С„Р°Р№Р»
 					}
-					else { // пользователь не найден
-						sp.CloseFind(); // закрыть область поиска
-						LogToFile(logsFile.c_str(), name, "invalid nick"); // запись лога
+					else { // РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РЅРµ РЅР°Р№РґРµРЅ
+						sp.CloseFind(); // Р·Р°РєСЂС‹С‚СЊ РѕР±Р»Р°СЃС‚СЊ РїРѕРёСЃРєР°
+						LogToFile(logsFile.c_str(), name, "invalid nick"); // Р·Р°РїРёСЃСЊ Р»РѕРіР°
 					}
 
-					this->Invoke(gcnew Action(this, &main::UpdateProgressIncrement)); // для запуска в другом потоке
+					this->Invoke(gcnew Action(this, &main::UpdateProgressIncrement)); // РґР»СЏ Р·Р°РїСѓСЃРєР° РІ РґСЂСѓРіРѕРј РїРѕС‚РѕРєРµ
 				}
 			}
-			catch (std::exception e) { // обработка исключений
-				System::String^ exceptionMsg; // сообщение с исключением
-				exceptionMsg = gcnew System::String(e.what()); // преобразование 
-				MessageBox::Show(exceptionMsg, "Error!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk); // вывод окошка с сообщением об ошибке
+			catch (std::exception e) { // РѕР±СЂР°Р±РѕС‚РєР° РёСЃРєР»СЋС‡РµРЅРёР№
+				System::String^ exceptionMsg; // СЃРѕРѕР±С‰РµРЅРёРµ СЃ РёСЃРєР»СЋС‡РµРЅРёРµРј
+				exceptionMsg = gcnew System::String(e.what()); // РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ 
+				MessageBox::Show(exceptionMsg, "Error!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk); // РІС‹РІРѕРґ РѕРєРѕС€РєР° СЃ СЃРѕРѕР±С‰РµРЅРёРµРј РѕР± РѕС€РёР±РєРµ
 
 				StopSpam = true;
 			}
