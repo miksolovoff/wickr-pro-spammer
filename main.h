@@ -192,75 +192,75 @@ namespace WickrSpammer {
 #pragma endregion
 	public:	void Spam() {
 			try {
-				StopSpam = false; // рассылка активна
+				StopSpam = false; // Рассылка активна
 
-				Spammer sp(FindWindow(L"Qt5QWindowOwnDCIcon", L"Wickr Pro")); // объект класса Spammer, непосредственная рассылка
+				Spammer sp(FindWindow(L"Qt5QWindowOwnDCIcon", L"Wickr Pro")); // Объект класса Spammer, необходим для рассылки
 
 				std::vector<std::string> names = {};
 				std::vector<std::string> messages = {};
 
 				try {
-					names = StrsFromFile(namesFile.c_str());
-				    messages = StrsFromFile(messageFile.c_str()); // вектор с сообщениями
+					names = StrsFromFile(namesFile.c_str()); // Вектор с никами
+				    messages = StrsFromFile(messageFile.c_str()); // Вектор с сообщениями
 				}
 				catch (std::exception e) {
-					System::String^ exceptionMsg; // сообщение с исключением
-					exceptionMsg = gcnew System::String((std::string("Any problems in file: ") + e.what()).c_str()); // преобразование 
-					MessageBox::Show(exceptionMsg, "Error!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk); // вывод окошка с сообщением об ошибке
+					System::String^ exceptionMsg; // Сообщение с исключением
+					exceptionMsg = gcnew System::String((std::string("Any problems in file: ") + e.what()).c_str()); // Преобразование сообщения
+					MessageBox::Show(exceptionMsg, "Error!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk); // Вывод окошка с сообщением об ошибке
 					StopSpam = true;
 				}
 
-				NewProgressMax = names.size(); // верхнаяя граница ProgressBar
+				NewProgressMax = names.size(); // Верхнаяя граница ProgressBar
 
-				this->Invoke(gcnew Action(this, &main::UpdateProgressMax)); // для запуска в другом потоке
+				this->Invoke(gcnew Action(this, &main::UpdateProgressMax)); // Для запуска в другом потоке
 
-				for (const auto& name : names) { // итерирование по каждому нику
+				for (const auto& name : names) { // Итерирование по каждому нику
 					if (StopSpam) {
 						break;
 					}
 
-					sp.FindUserByStr(name); // поиск пользователя
+					sp.FindUserByStr(name); // Поиск пользователя
 					if (StopSpam) {
 						break;
 					}
 
-					if (sp.IsUserFinded(name)) { // пользователь найден
+					if (sp.IsUserFinded(name)) { // Пользователь найден
 						if (StopSpam) {
 							break;
 						}
 
-						sp.ChooseUser(); // выбрать пользователя
+						sp.ChooseUser(); // Выбрать пользователя
 						if (StopSpam) {
 							break;
 						}
 
-						sp.ConfirmUser(name); // подтвердить выбор пользователя
+						sp.ConfirmUser(name); // Подтвердить выбор пользователя
 						if (StopSpam) {
 							break;
 						}
 
-						for (const auto& msg : messages) { // итерирование по каждому сообщению
+						for (const auto& msg : messages) { // Итерирование по каждому сообщению
 							if (StopSpam) {
 								break;
 							}
-							sp.SendMessageToUser(msg); // отправка сообщения
+							sp.SendMessageToUser(msg); // Отправка сообщения
 							Sleep(10);
 						}
 
-						LogToFile(logsFile.c_str(), name, "message has been sent"); // запись лога в файл
+						LogToFile(logsFile.c_str(), name, "message has been sent"); // Запись лога в файл
 					}
-					else { // пользователь не найден
-						sp.CloseFind(); // закрыть область поиска
-						LogToFile(logsFile.c_str(), name, "invalid nick"); // запись лога
+					else { // Пользователь не найден
+						sp.CloseFind(); // Закрыть область поиска
+						LogToFile(logsFile.c_str(), name, "invalid nick"); // Запись лога
 					}
 
-					this->Invoke(gcnew Action(this, &main::UpdateProgressIncrement)); // для запуска в другом потоке
+					this->Invoke(gcnew Action(this, &main::UpdateProgressIncrement)); // Для запуска в другом потоке
 				}
 			}
-			catch (std::exception e) { // обработка исключений
-				System::String^ exceptionMsg; // сообщение с исключением
-				exceptionMsg = gcnew System::String(e.what()); // преобразование 
-				MessageBox::Show(exceptionMsg, "Error!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk); // вывод окошка с сообщением об ошибке
+			catch (std::exception e) { // Обработка исключений
+				System::String^ exceptionMsg; // Сообщение с исключением
+				exceptionMsg = gcnew System::String(e.what()); // Преобразование 
+				MessageBox::Show(exceptionMsg, "Error!", MessageBoxButtons::OK, MessageBoxIcon::Asterisk); // Вывод окошка с сообщением об ошибке
 
 				StopSpam = true;
 			}
