@@ -6,22 +6,22 @@
 #include <string>
 #include <vector>
 
-// Класс, описывающий точку для клика в окне
+// РљР»Р°СЃСЃ, РѕРїРёСЃС‹РІР°СЋС‰РёР№ С‚РѕС‡РєСѓ РґР»СЏ РєР»РёРєР° РІ РѕРєРЅРµ
 class _Point {
 public:
 	_Point();
 	_Point(size_t newX, size_t newY, const HWND& newHwnd);
 
-	// Геттеры
-	void setX(size_t newX); // Установить координату x относительно окна
-	void setY(size_t newY); // Установить координату y относительно окна
-	void setHwnd(const HWND& newHwnd); // Установить хэндл окна
+	// Р“РµС‚С‚РµСЂС‹
+	void setX(size_t newX); // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєРѕРѕСЂРґРёРЅР°С‚Сѓ x РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РѕРєРЅР°
+	void setY(size_t newY); // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєРѕРѕСЂРґРёРЅР°С‚Сѓ y РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РѕРєРЅР°
+	void setHwnd(const HWND& newHwnd); // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С…СЌРЅРґР» РѕРєРЅР°
 
-	size_t getX(); // Получить координату x относительно окна
-	size_t getY(); // Получить координату y относительно окна
-	HWND getHwnd(); // Получить хэндл окна
+	size_t getX(); // РџРѕР»СѓС‡РёС‚СЊ РєРѕРѕСЂРґРёРЅР°С‚Сѓ x РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РѕРєРЅР°
+	size_t getY(); // РџРѕР»СѓС‡РёС‚СЊ РєРѕРѕСЂРґРёРЅР°С‚Сѓ y РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РѕРєРЅР°
+	HWND getHwnd(); // РџРѕР»СѓС‡РёС‚СЊ С…СЌРЅРґР» РѕРєРЅР°
 
-	void click(); // Клик по координатам в окне
+	void click(); // РљР»РёРє РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј РІ РѕРєРЅРµ
 
 private:
 	size_t x;
@@ -29,22 +29,22 @@ private:
 	HWND hwnd;
 };
 
-// Класс, описывающий механизм рассылки
+// РљР»Р°СЃСЃ, РѕРїРёСЃС‹РІР°СЋС‰РёР№ РјРµС…Р°РЅРёР·Рј СЂР°СЃСЃС‹Р»РєРё
 class Spammer {
 public:
 	Spammer(const HWND& newHwnd);
 
-	void SendText(const std::string& text_string); // Ввод текста в окне
+	void SendText(const std::string& text_string); // Р’РІРѕРґ С‚РµРєСЃС‚Р° РІ РѕРєРЅРµ
 
-	void FindUserByStr(const std::string& name); // Поиск пользователя по нику
-	void ChooseUser(); // Выбор пользователя для взаимодействия
-	void ConfirmUser(const std::string& userName); // Подтверждение выбора пользователя
-	void SendMessageToUser(const std::string& message); // Отправить сообщение пользователю
+	void FindUserByStr(const std::string& name); // РџРѕРёСЃРє РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРѕ РЅРёРєСѓ
+	void ChooseUser(); // Р’С‹Р±РѕСЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ
+	void ConfirmUser(const std::string& userName); // РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РІС‹Р±РѕСЂР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+	void SendMessageToUser(const std::string& message); // РћС‚РїСЂР°РІРёС‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
 	void CloseFind();
 
-	void setHwnd(const HWND& newHwnd); // Установить хэндл окна
+	void setHwnd(const HWND& newHwnd); // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С…СЌРЅРґР» РѕРєРЅР°
 
-	bool IsUserFinded(const std::string& userName); // Найден пользователь
+	bool IsUserFinded(const std::string& userName); // РќР°Р№РґРµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ
 
 private:
 	HWND hwnd;
@@ -60,5 +60,4 @@ private:
 };
 
 std::string StrFromPhoto(const char* filename);
-
 
